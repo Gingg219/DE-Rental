@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Models\User;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -28,3 +29,10 @@ Route::get('/auth/redirect/{provider}', function ($provider) {
 })->name('auth.redirect');
  
 Route::get('/auth/callback/{provider}', [AuthController::class, 'callback'] )->name('auth.callback');
+// Route::resource('admin/user',UserController::class);
+Route::get('/admin/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/admin/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+// Route::get('/admin/user/{$user}/edit', function($user){
+//     dd($user);
+// })->name('user.edit');
+Route::get('/admin/user/create', [UserController::class, 'create'])->name('user.create');

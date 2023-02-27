@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::query()->paginate(10);
+        return view('admin.user.index',compact('users'));
     }
 
     /**
@@ -58,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.user.edit',compact('user'));
     }
 
     /**
